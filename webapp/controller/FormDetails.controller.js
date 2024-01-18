@@ -140,17 +140,18 @@ sap.ui.define(
               oThis._initializeViewModel();
               oThis._setChangeListeners(false);
             }
+            try{
+
+                if(oThis._oTour){
+                    oThis._oTour?.cancel();
+                    oThis._oTour?.destroy();
+                  }
+              }catch(e){
+                  console.log(e);
+              }
           };
 
-          try{
-
-              if(oThis._oTour){
-                  oThis._oTour?.cancel();
-                  oThis._oTour?.destroy();
-                }
-            }catch(e){
-                console.log(e);
-            }
+          
           /*jQuery.sap.history({
                                 routes: [], //please refer to the jQuery.sap.history function comment for the format.
                                 defaultHandler: function () {
@@ -1398,7 +1399,7 @@ sap.ui.define(
                 return "Accept";
               }
 
-              if (sId === "CANCEL") {
+              if (sId === "CANCEL" || sId === "STAT_LOG") {
                 return "Reject";
               }
 
