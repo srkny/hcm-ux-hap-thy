@@ -1,0 +1,33 @@
+<mvc:View controllerName="hcm.ux.hapv4.controller.FormDetails" xmlns="sap.m" xmlns:custom="hcm.ux.hapv4.control" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:smod="smod.ui5.controls"
+	>
+	<smod:CustomSideBar id="idCustomSideBar" navItemSelected="onNavItemSelected" navData="{formDetailsModel>/navigationData}"
+		visible="{= ${formDetailsModel>/sidebarData/visible} &amp;&amp; ${formDetailsModel>/headerVisible}}">
+		<smod:content>
+			<NavContainer id="idPageNavigationContainer"></NavContainer>
+		</smod:content> 
+		<smod:brandImageExpanded>
+			<Image src="/sap/opu/odata/sap/ZHCM_UX_HAP_TKAO_SRV_01/MimeInfoSet('%2FSAP%2FPublic%2FCustomImages%2Fbrand_logo_tkao.png')/$value" height="30px"/>
+			<!--<Image src="/sap/opu/odata/sap/ZHCM_GENERIC_SRV/MimeInfoSet('%2FSAP%2FPublic%2FCustom_Images%2Fbrand_logo.png')/$value" width="35px"-->
+			<!--	height="21px"/>-->
+		</smod:brandImageExpanded>
+		<smod:brandImageCollapsed>
+			<Image src="/sap/opu/odata/sap/ZHCM_UX_HAP_TKAO_SRV_01/MimeInfoSet('%2FSAP%2FPublic%2FCustomImages%2Fbrand_logo_collapsed.png')/$value"
+				height="30px"/>
+		</smod:brandImageCollapsed>
+		<!-- <smod:mainProfileInfo> -->
+			<!-- <smod:CustomSideBarProfile profileData="{formDetailsModel>/sidebarData/appeeInfo}"></smod:CustomSideBarProfile> -->
+		<!-- </smod:mainProfileInfo> -->
+		<smod:infoTabs>
+			<smod:CustomSideBarProfile profileData="{formDetailsModel>/sidebarData/appeeInfo}" tabTitle="{i18n>employee}" tabCount="1"></smod:CustomSideBarProfile>
+				<smod:CustomSideBarStatus statusData="{formDetailsModel>/sidebarData/statusInfo}" tabTitle="{i18n>FormStatus}" tabCount="2"></smod:CustomSideBarStatus>
+			<smod:CustomSideBarProfile profileData="{formDetailsModel>/sidebarData/apper1stInfo}" tabTitle="{i18n>labelFirstAppraiser}" tabCount="3"></smod:CustomSideBarProfile>
+			<smod:CustomSideBarProfile profileData="{formDetailsModel>/sidebarData/apper2ndInfo}" tabTitle="{i18n>labelSecondAppraiser}" tabCount="4"
+				visible="{= ${formDetailsModel>/sidebarData/apper2ndInfo/Id} ? true : false }"></smod:CustomSideBarProfile>
+			
+		</smod:infoTabs>
+		<smod:footer>
+			<smod:ComparisonTable dataContent="{formDetailsModel>/sidebarData/footerData}"></smod:ComparisonTable>
+		</smod:footer>
+	</smod:CustomSideBar>
+</mvc:View>

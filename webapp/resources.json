@@ -1,0 +1,278 @@
+{
+    "resources": [
+        {
+            "name": "view/ObjectNotFound.view.xml"
+        },
+        {
+            "name": "view/FormList.view.xml"
+        },
+        {
+            "name": "view/FormDetails.view.xml"
+        },
+        {
+            "name": "view/NotFound.view.xml"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "test/unit/controller/App.controller.js"
+        },
+        {
+            "name": "test/unit/controller/Worklist.controller.js"
+        },
+        {
+            "name": "test/unit/controller/Worklist-dbg.controller.js"
+        },
+        {
+            "name": "test/unit/controller/App-dbg.controller.js"
+        },
+        {
+            "name": "test/unit/unitTests.qunit.html"
+        },
+        {
+            "name": "test/unit/allTests.js"
+        },
+        {
+            "name": "test/unit/allTests-dbg.js"
+        },
+        {
+            "name": "test/unit/helper/FakeI18nModel-dbg.js"
+        },
+        {
+            "name": "test/unit/helper/FakeI18nModel.js"
+        },
+        {
+            "name": "test/unit/model/formatter-dbg.js"
+        },
+        {
+            "name": "test/unit/model/formatter.js"
+        },
+        {
+            "name": "test/unit/model/models-dbg.js"
+        },
+        {
+            "name": "test/unit/model/models.js"
+        },
+        {
+            "name": "test/flpSandbox.html"
+        },
+        {
+            "name": "test/integration/pages/Browser-dbg.js"
+        },
+        {
+            "name": "test/integration/pages/Object.js"
+        },
+        {
+            "name": "test/integration/pages/shareOptions.js"
+        },
+        {
+            "name": "test/integration/pages/shareOptions-dbg.js"
+        },
+        {
+            "name": "test/integration/pages/NotFound.js"
+        },
+        {
+            "name": "test/integration/pages/App-dbg.js"
+        },
+        {
+            "name": "test/integration/pages/Common-dbg.js"
+        },
+        {
+            "name": "test/integration/pages/NotFound-dbg.js"
+        },
+        {
+            "name": "test/integration/pages/Browser.js"
+        },
+        {
+            "name": "test/integration/pages/Worklist.js"
+        },
+        {
+            "name": "test/integration/pages/Worklist-dbg.js"
+        },
+        {
+            "name": "test/integration/pages/Object-dbg.js"
+        },
+        {
+            "name": "test/integration/pages/Common.js"
+        },
+        {
+            "name": "test/integration/pages/App.js"
+        },
+        {
+            "name": "test/integration/WorklistJourney.js"
+        },
+        {
+            "name": "test/integration/AllJourneys.js"
+        },
+        {
+            "name": "test/integration/AllJourneys-dbg.js"
+        },
+        {
+            "name": "test/integration/NotFoundJourney.js"
+        },
+        {
+            "name": "test/integration/NavigationJourney-dbg.js"
+        },
+        {
+            "name": "test/integration/opaTests.qunit.html"
+        },
+        {
+            "name": "test/integration/NavigationJourney.js"
+        },
+        {
+            "name": "test/integration/FLPIntegrationJourney-dbg.js"
+        },
+        {
+            "name": "test/integration/NotFoundJourney-dbg.js"
+        },
+        {
+            "name": "test/integration/ObjectJourney-dbg.js"
+        },
+        {
+            "name": "test/integration/FLPIntegrationJourney.js"
+        },
+        {
+            "name": "test/integration/WorklistJourney-dbg.js"
+        },
+        {
+            "name": "test/integration/ObjectJourney.js"
+        },
+        {
+            "name": "test/flpSandboxMockServer.html"
+        },
+        {
+            "name": "test/testsuite.qunit.html"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "controller/FormList.controller.js"
+        },
+        {
+            "name": "controller/NotFound.controller.js"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "controller/FormDetails.controller.js"
+        },
+        {
+            "name": "controller/ErrorHandler.js"
+        },
+        {
+            "name": "utils/lodash.js"
+        },
+        {
+            "name": "utils/UIHelper.js"
+        },
+        {
+            "name": "resources.json",
+            "merged": true
+        },
+        {
+            "name": "localService/mockserver.js"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "localService/mockserver-dbg.js"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "i18n/i18n_tr.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "fragment/AttachmentList.fragment.xml"
+        },
+        {
+            "name": "fragment/ElementSurvey.fragment.xml"
+        },
+        {
+            "name": "fragment/HeaderStatus.fragment.xml"
+        },
+        {
+            "name": "fragment/DevelopmentTrainings.fragment.xml"
+        },
+        {
+            "name": "fragment/AddNewElementFreeForm.fragment.xml"
+        },
+        {
+            "name": "fragment/HeaderAppraiser.fragment.xml"
+        },
+        {
+            "name": "fragment/GenericBusyDialog.fragment.xml"
+        },
+        {
+            "name": "fragment/HeaderOthers.fragment.xml"
+        },
+        {
+            "name": "fragment/AddNewElementFree.fragment.xml"
+        },
+        {
+            "name": "fragment/HeaderAppraisee.fragment.xml"
+        },
+        {
+            "name": "fragment/AddNewElementCatalog.fragment.xml"
+        },
+        {
+            "name": "fragment/AddNewElementObjective.fragment.xml"
+        },
+        {
+            "name": "fragment/UploadAttachments.fragment.xml"
+        },
+        {
+            "name": "fragment/ValueDescription.fragment.xml"
+        },
+        {
+            "name": "css/style-dbg.css"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": ".project.json"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "model/formatter-dbg.js"
+        },
+        {
+            "name": "model/models-dbg.js"
+        },
+        {
+            "name": "model/formatter.js"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": ".user.project.json"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "images/devplanbg.jpg"
+        },
+        {
+            "name": "images/loading.gif"
+        }
+    ]
+}
