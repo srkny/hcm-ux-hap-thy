@@ -1,293 +1,914 @@
-<edmx:Edmx
-    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
-    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
-    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
     <edmx:DataServices m:DataServiceVersion="2.0">
-        <Schema
-            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZHCM_UX_HAP_TKAO_SRV_01" xml:lang="en" sap:schema-version="1">
+        <Schema Namespace="ZHCM_UX_HAP_TKAO_SRV_01" xml:lang="tr" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="Objectives" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="Plvar" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Plan varyantı"/>
+                <Property Name="Otype" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Nesne tipi"/>
+                <Property Name="Objid" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Nesne tn"/>
+                <Property Name="Begda" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Başlangıç trh."/>
+                <Property Name="Endda" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Bitiş tarihi"/>
+                <Property Name="Istat" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Plan durumu"/>
+                <Property Name="Histo" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Tarihçe kaydı"/>
+                <Property Name="Short" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Nesne kodu"/>
+                <Property Name="Stext" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Realo" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:label="Gnşl.nesne tn."/>
+                <Property Name="Zzmeaning" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Hedef Ölçüsü"/>
+                <Property Name="ZzmeaningTxt" Type="Edm.String" MaxLength="40" sap:unicode="true" sap:label="Yetkinlik"/>
+                <Property Name="Zzunit" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Hedef Birimi"/>
+                <Property Name="ZzunitTxt" Type="Edm.String" MaxLength="40" sap:unicode="true" sap:label="Yetkinlik"/>
+                <Property Name="Zzdirection" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Hedef Yönü"/>
+                <Property Name="ZzdirectionTxt" Type="Edm.String" MaxLength="60" sap:unicode="true" sap:label="Kısa tanım"/>
+                <Property Name="ZzexpResult" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="false" sap:label="Beklenen Değer"/>
+                <Property Name="ZzachResult" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="false" sap:label="Gerçekleşen Değer"/>
+                <Property Name="ZzfinResult" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="false" sap:label="Son Değerlendirme"/>
+                <Property Name="Zzweight" Type="Edm.Decimal" Precision="5" Scale="2" sap:unicode="false" sap:label="Ağırlıklandırma(%)"/>
+                <Property Name="Zzminimum" Type="Edm.Decimal" Precision="15" Scale="2" sap:unicode="false" sap:label="Asgari Değer"/>
+                <Property Name="Zzmaximum" Type="Edm.Decimal" Precision="15" Scale="2" sap:unicode="false" sap:label="Azami Değer"/>
+                <Property Name="Level" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="Seviye"/>
+                <Property Name="Description" Type="Edm.String" sap:unicode="false" sap:label="DESCRIPTION"/>
+            </EntityType>
+            <EntityType Name="MimeInfo" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mimep"/>
+                </Key>
+                <Property Name="Mimep" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Mime path"/>
+                <Property Name="Mimec" Type="Edm.String" sap:unicode="false" sap:label="Mime content"/>
+                <Property Name="Mimet" Type="Edm.String" sap:unicode="false" sap:label="Mime type"/>
+            </EntityType>
+            <EntityType Name="ResultTable" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sort" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Karakter alanı uzunluğu 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RowName" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ROW_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ColIid" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sütün tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ColName" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="COL_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VALUE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="DevPlanActivities" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Otype"/>
+                    <PropertyRef Name="Objid"/>
+                </Key>
+                <Property Name="Otype" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Nesne tipi"/>
+                <Property Name="Objid" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Nesne tn"/>
+                <Property Name="Stext" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Description" Type="Edm.String" sap:unicode="true" sap:label="DESCRIPTION"/>
+            </EntityType>
+            <EntityType Name="FormParameters" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Param"/>
+                </Key>
+                <Property Name="Param" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Parametre"/>
+                <Property Name="Value" Type="Edm.String" MaxLength="120" sap:unicode="false" sap:label="Değer"/>
+            </EntityType>
             <EntityType Name="DocumentList" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                     <PropertyRef Name="PartApId"/>
                 </Key>
-                <Property Name="Counter" Type="Edm.Int32" sap:label="Number"/>
-                <Property Name="PlanVersion" Type="Edm.String" MaxLength="2" sap:label="Plan Version"/>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="PartApId" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Part Appraisal ID"/>
-                <Property Name="AppraisalName" Type="Edm.String" MaxLength="80" sap:label="App.Document Name"/>
-                <Property Name="AppraisalTypeText" Type="Edm.String" MaxLength="40" sap:label="App.Document Type"/>
-                <Property Name="AppraiserId" Type="Edm.String" MaxLength="45" sap:label="Appraiser ID"/>
-                <Property Name="AppraiserType" Type="Edm.String" MaxLength="2" sap:label="Appraiser Type"/>
-                <Property Name="AppraiserTypeText" Type="Edm.String" MaxLength="25" sap:label="Appraiser Type"/>
-                <Property Name="AppraiserName" Type="Edm.String" MaxLength="40" sap:label="Appraiser Name"/>
-                <Property Name="AppraiserShort" Type="Edm.String" MaxLength="12" sap:label="Appraiser Short Name"/>
-                <Property Name="AppraiseeId" Type="Edm.String" MaxLength="45" sap:label="Extended AppraiseeID"/>
-                <Property Name="AppraiseeType" Type="Edm.String" MaxLength="2" sap:label="Appraisee Type"/>
-                <Property Name="AppraiseeTypeText" Type="Edm.String" MaxLength="25" sap:label="Appraisee Type"/>
-                <Property Name="AppraiseeName" Type="Edm.String" MaxLength="40" sap:label="Appraisee Name"/>
-                <Property Name="AppraiseeShort" Type="Edm.String" MaxLength="12" sap:label="Appraisee Short Name"/>
-                <Property Name="ApStatus" Type="Edm.String" MaxLength="1" sap:label="Appraisal Status"/>
-                <Property Name="ApStatusName" Type="Edm.String" MaxLength="40" sap:label="Appraisal Status"/>
-                <Property Name="ApStatusSub" Type="Edm.String" MaxLength="1" sap:label="Substatus"/>
-                <Property Name="ApStatusSubName" Type="Edm.String" MaxLength="40" sap:label="Substatus"/>
-                <Property Name="ApStartDate" Type="Edm.DateTime" Precision="7" sap:label="Period"/>
-                <Property Name="ApEndDate" Type="Edm.DateTime" Precision="7" sap:label="To"/>
-                <Property Name="ObjDateSet" Type="Edm.DateTime" Precision="7" sap:label="Obj. Setting Date"/>
-                <Property Name="ReviewDateSet" Type="Edm.DateTime" Precision="7" sap:label="Review Date"/>
-                <Property Name="ApDateSet" Type="Edm.DateTime" Precision="7" sap:label="Appraisal Date"/>
-                <Property Name="ChangeDate" Type="Edm.DateTime" Precision="7" sap:label="Last Changed"/>
-                <Property Name="ChangeTime" Type="Edm.Time" Precision="0" sap:label="Last Change Time"/>
-                <Property Name="ChangeUser" Type="Edm.String" MaxLength="12" sap:label="Last Changed by"/>
-                <Property Name="TemplateId" Type="Edm.String" MaxLength="8" sap:label="Appraisal Template"/>
-                <Property Name="PartRoleId" Type="Edm.String" MaxLength="2" sap:label="Part Apper Role ID"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="PartApId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Kıs.değerlendirme tn"/>
+                <Property Name="Isusage" Type="Edm.Boolean" sap:unicode="false" sap:label="DOĞRU"/>
+                <Property Name="Counter" Type="Edm.Int32" sap:unicode="false" sap:label="Sayı"/>
+                <Property Name="PlanVersion" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Plan varyantı"/>
+                <Property Name="AppraisalName" Type="Edm.String" MaxLength="80" sap:unicode="false" sap:label="Değerlendirme adı"/>
+                <Property Name="AppraisalTypeText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Değerlendirme tipi"/>
+                <Property Name="AppraiserId" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:label="Değerlendiren tn."/>
+                <Property Name="AppraiserType" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Değerlendiren tipi"/>
+                <Property Name="AppraiserTypeText" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Değerlendiren tipi"/>
+                <Property Name="AppraiserName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Değerlendirenin adı"/>
+                <Property Name="AppraiserShort" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Değrlnd.kısa tanımı"/>
+                <Property Name="AppraiseeId" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:label="Değerlendirilen tn."/>
+                <Property Name="AppraiseeType" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Değerlendirilen tipi"/>
+                <Property Name="AppraiseeTypeText" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Değerlendirilen tipi"/>
+                <Property Name="AppraiseeName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Değerlendirilen adı"/>
+                <Property Name="AppraiseeShort" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Dğrlndrln.kısa tnm."/>
+                <Property Name="ApStatus" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Değerlendirme durumu"/>
+                <Property Name="ApStatusName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Değerlendirme durumu"/>
+                <Property Name="ApStatusSub" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Alt durum"/>
+                <Property Name="ApStatusSubName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Alt durum"/>
+                <Property Name="ApStartDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Dönem"/>
+                <Property Name="ApEndDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="son"/>
+                <Property Name="ObjDateSet" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Hedef belirleme trh."/>
+                <Property Name="ReviewDateSet" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Gözden geçirme trh."/>
+                <Property Name="ApDateSet" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Değerlendirme tarihi"/>
+                <Property Name="ChangeDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Son değişiklik"/>
+                <Property Name="ChangeTime" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Son değişiklik saati"/>
+                <Property Name="ChangeUser" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Son değiştiren"/>
+                <Property Name="TemplateId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Değerlendirme formu"/>
+                <Property Name="PartRoleId" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Kıs.dğrlnd.rol tn."/>
+                <Property Name="RoleId" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Değerlendirme rolü"/>
+                <Property Name="ShowIntro" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="DOĞRU" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
             <EntityType Name="DocProcessing" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="Mode" Type="Edm.String" MaxLength="1" sap:label="Single-Character Indicator"/>
-                <Property Name="UiMode" Type="Edm.String" MaxLength="1" sap:label="User Interface Mode"/>
-                <Property Name="DocumentMode" Type="Edm.String" MaxLength="1" sap:label="Output Mode"/>
-                <Property Name="ButtonMode" Type="Edm.String" MaxLength="1" sap:label="Single-Character Indicator"/>
-                <Property Name="Administrator" Type="Edm.Boolean" sap:label="Administrator"/>
-                <Property Name="AddOnApplication" Type="Edm.String" MaxLength="4" sap:label="Add-On Application"/>
-                <Property Name="CompleteDocument" Type="Edm.String" MaxLength="1" sap:label="Single-Character Indicator"/>
-                <Property Name="TemplateMode" Type="Edm.String" MaxLength="1" sap:label="Template Mode"/>
-                <Property Name="OnlyOneAllowed" Type="Edm.String" MaxLength="1" sap:label="Create App. Document"/>
-                <Property Name="NoSelfappraisal" Type="Edm.Boolean" sap:label="No Self Appraisal"/>
-                <Property Name="NoObjectivePhase" Type="Edm.Boolean" sap:label="No Objective Period"/>
-                <Property Name="NoReviewPhase" Type="Edm.Boolean" sap:label="No Review Phase"/>
-                <Property Name="NoAppraisalPhase" Type="Edm.String" MaxLength="1" sap:label="Single-Character Indicator"/>
-                <Property Name="NoDateCheck" Type="Edm.Boolean" sap:label="Do Not Check Date"/>
-                <Property Name="WorkflowActive" Type="Edm.Boolean" sap:label="Approval Activated"/>
-                <Property Name="AttachmentAllow" Type="Edm.Boolean" sap:label="Attachment Allowed"/>
-                <Property Name="MultiAppraisers" Type="Edm.Boolean" sap:label="Multiple Appraisers"/>
-                <Property Name="MultiAppraisees" Type="Edm.Boolean" sap:label="Multiple Appraisees"/>
-                <Property Name="ActionlogActive" Type="Edm.String" MaxLength="1" sap:label="Action Log"/>
-                <Property Name="ArchivedProcess" Type="Edm.String" MaxLength="1" sap:label="Proc.Arch.App.Docs"/>
-                <Property Name="NoAppersAuth" Type="Edm.Boolean" sap:label="No AuthorizationChk"/>
-                <Property Name="DynamicTemplate" Type="Edm.Boolean" sap:label="Dynamic Template"/>
-                <Property Name="DocEnqueue" Type="Edm.String" MaxLength="1" sap:label="Appraisal Enqueue"/>
-                <Property Name="NumberOfPartAppers" Type="Edm.String" MaxLength="2" sap:label="Max. Part Appraisers"/>
-                <Property Name="Real360" Type="Edm.String" MaxLength="1" sap:label="Single-Character Indicator"/>
-                <Property Name="DynamicEvent" Type="Edm.Boolean" sap:label="Dynamic Event"/>
-                <Property Name="AttachmentMode" Type="Edm.String" MaxLength="1" sap:label="Attachment(s) Mode"/>
-                <Property Name="DraftNotesAllowed" Type="Edm.String" MaxLength="1" sap:label="Option"/>
-                <Property Name="OfflineDequeue" Type="Edm.Guid" sap:label="Offline ID"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="Mode" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Karakter 1"/>
+                <Property Name="UiMode" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Klnc.arayüzü kipi"/>
+                <Property Name="DocumentMode" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi"/>
+                <Property Name="ButtonMode" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Karakter 1"/>
+                <Property Name="Administrator" Type="Edm.Boolean" sap:unicode="false" sap:label="Yönetici"/>
+                <Property Name="AddOnApplication" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Add-on uygulaması"/>
+                <Property Name="CompleteDocument" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Karakter 1"/>
+                <Property Name="TemplateMode" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Form kipi"/>
+                <Property Name="OnlyOneAllowed" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Değerlendirme yarat"/>
+                <Property Name="NoSelfappraisal" Type="Edm.Boolean" sap:unicode="false" sap:label="Otm.dğrl.yok"/>
+                <Property Name="NoObjectivePhase" Type="Edm.Boolean" sap:unicode="false" sap:label="Dönem yok"/>
+                <Property Name="NoReviewPhase" Type="Edm.Boolean" sap:unicode="false" sap:label="Göz.gçrm.ev.mvc.dğl."/>
+                <Property Name="NoAppraisalPhase" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Karakter 1"/>
+                <Property Name="NoDateCheck" Type="Edm.Boolean" sap:unicode="false" sap:label="Tarihi kontrol etme"/>
+                <Property Name="WorkflowActive" Type="Edm.Boolean" sap:unicode="false" sap:label="Onayı etkinleştir"/>
+                <Property Name="AttachmentAllow" Type="Edm.Boolean" sap:unicode="false" sap:label="Gösterge: Ek geçerli"/>
+                <Property Name="MultiAppraisers" Type="Edm.Boolean" sap:unicode="false" sap:label="Çoklu değerlendiren"/>
+                <Property Name="MultiAppraisees" Type="Edm.Boolean" sap:unicode="false" sap:label="Çoklu değerlend."/>
+                <Property Name="ActionlogActive" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="İşlem günlüğü"/>
+                <Property Name="ArchivedProcess" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Arşivlenen dğrl.işlm"/>
+                <Property Name="NoAppersAuth" Type="Edm.Boolean" sap:unicode="false" sap:label="Yetki kontrolü yok"/>
+                <Property Name="DynamicTemplate" Type="Edm.Boolean" sap:unicode="false" sap:label="Dinamik formlar"/>
+                <Property Name="DocEnqueue" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Değerlendirme blkj."/>
+                <Property Name="NumberOfPartAppers" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Kısmi dğrlnd.azm.sy."/>
+                <Property Name="Real360" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Karakter 1"/>
+                <Property Name="DynamicEvent" Type="Edm.Boolean" sap:unicode="false" sap:label="Dinamik olay"/>
+                <Property Name="AttachmentMode" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Ek(ler) kipi"/>
+                <Property Name="DraftNotesAllowed" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Seçenek"/>
+                <Property Name="OfflineDequeue" Type="Edm.String" MaxLength="32" sap:unicode="false" sap:label="Çevrimdışı tn."/>
             </EntityType>
             <EntityType Name="HeaderAppraiser" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="PlanVersion" Type="Edm.String" MaxLength="2" sap:label="Plan Version"/>
-                <Property Name="Type" Type="Edm.String" MaxLength="2" sap:label="Appraiser Type"/>
-                <Property Name="Id" Type="Edm.String" MaxLength="45" sap:label="Extended obj.ID"/>
-                <Property Name="Name" Type="Edm.String" MaxLength="40" sap:label="Appraiser Name"/>
-                <Property Name="Short" Type="Edm.String" MaxLength="12" sap:label="Appraiser Short Name"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="Bukrs" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Şirket kodu"/>
+                <Property Name="Butxt" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Şirket adı"/>
+                <Property Name="PlanVersion" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Plan varyantı"/>
+                <Property Name="Type" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Değerlendiren tipi"/>
+                <Property Name="Werks" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Pers.alanı"/>
+                <Property Name="Id" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:label="Gnşl.nesne tn."/>
+                <Property Name="Name1" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Pers.aln.metni"/>
+                <Property Name="Btrtl" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Pers.alt alanı"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Değerlendirenin adı"/>
+                <Property Name="Btext" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Alt aln.metni"/>
+                <Property Name="Short" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Değrlnd.kısa tanımı"/>
+                <Property Name="Persg" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Çalışan gr."/>
+                <Property Name="Ptext" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Çalışan gr.tnm."/>
+                <Property Name="Persk" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Çlşn.alt gr."/>
+                <Property Name="Pktxt" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Çlşn.alt gr.tnm"/>
+                <Property Name="Orgeh" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Org.birimi"/>
+                <Property Name="Orgtx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Plans" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Pozisyon"/>
+                <Property Name="Plstx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Stell" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="İş"/>
+                <Property Name="Stltx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Uname" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Tn./numara"/>
+                <Property Name="Email" Type="Edm.String" MaxLength="241" sap:unicode="false" sap:label="Uzun tn./no."/>
+                <Property Name="PhotoUrl" Type="Edm.String" sap:unicode="false" sap:label="PHOTO_URL"/>
+                <Property Name="Hiredate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="İşe giriş trh."/>
             </EntityType>
             <EntityType Name="HeaderText" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="AppraisalTxt" Type="Edm.String" MaxLength="40"/>
-                <Property Name="AppraisalName" Type="Edm.String" MaxLength="80" sap:label="App.Document Name"/>
-                <Property Name="StatusTxt" Type="Edm.String" MaxLength="40" sap:label="Status Text"/>
-                <Property Name="ApperTypeTxt" Type="Edm.String" MaxLength="40" sap:label="Appraiser Text"/>
-                <Property Name="ApperTypeTxtM" Type="Edm.String" MaxLength="40" sap:label="Appraiser Type Text"/>
-                <Property Name="AppeeTypeTxt" Type="Edm.String" MaxLength="40" sap:label="Appraisee Text"/>
-                <Property Name="AppeeTypeTxtM" Type="Edm.String" MaxLength="40" sap:label="Appraisee Type Text"/>
-                <Property Name="PApperTypeTxt" Type="Edm.String" MaxLength="40" sap:label="Part Appraiser"/>
-                <Property Name="PApperTypeM" Type="Edm.String" MaxLength="40" sap:label="Part Appraiser Type"/>
-                <Property Name="OtherTypeTxt" Type="Edm.String" MaxLength="40" sap:label="Further Participants"/>
-                <Property Name="ValPeriodTxt" Type="Edm.String" MaxLength="40" sap:label="Validity Period"/>
-                <Property Name="ExePeriodTxt" Type="Edm.String" MaxLength="40" sap:label="Execution Period"/>
-                <Property Name="ObjDateTxt" Type="Edm.String" MaxLength="40" sap:label="Objective Set Date"/>
-                <Property Name="RevDateTxt" Type="Edm.String" MaxLength="40" sap:label="Text for Review Date"/>
-                <Property Name="AppDateTxt" Type="Edm.String" MaxLength="40" sap:label="Appraisal Date Text"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="AppraisalTxt" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="40 karakter uzunluğundaki metin"/>
+                <Property Name="AppraisalName" Type="Edm.String" MaxLength="80" sap:unicode="false" sap:label="Değerlendirme adı"/>
+                <Property Name="StatusTxt" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Durum metni"/>
+                <Property Name="ApperTypeTxt" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Değerlendiren metni"/>
+                <Property Name="ApperTypeTxtM" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="DeğerlendirenTpMtn"/>
+                <Property Name="AppeeTypeTxt" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Değerlendirilen mtn."/>
+                <Property Name="AppeeTypeTxtM" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Dğrlnd.tipi için mtn"/>
+                <Property Name="PApperTypeTxt" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Kısmi değerlendiren"/>
+                <Property Name="PApperTypeM" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Kısmi dğrlnd.tipi"/>
+                <Property Name="OtherTypeTxt" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Diğer katılımcılar"/>
+                <Property Name="ValPeriodTxt" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Geçerlilik dönemi"/>
+                <Property Name="ExePeriodTxt" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Yürütme dönemi"/>
+                <Property Name="ObjDateTxt" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Hedef belirleme trh."/>
+                <Property Name="RevDateTxt" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Gözden geç.trh.mtn."/>
+                <Property Name="AppDateTxt" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Değerlm.tarihi metni"/>
             </EntityType>
             <EntityType Name="HeaderAppraisee" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="PlanVersion" Type="Edm.String" MaxLength="2" sap:label="Plan Version"/>
-                <Property Name="Type" Type="Edm.String" MaxLength="2" sap:label="Appraisee Type"/>
-                <Property Name="Id" Type="Edm.String" MaxLength="45" sap:label="Extended obj.ID"/>
-                <Property Name="Name" Type="Edm.String" MaxLength="40" sap:label="Appraisee Name"/>
-                <Property Name="Short" Type="Edm.String" MaxLength="12" sap:label="Appraisee Short Name"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="Bukrs" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Şirket kodu"/>
+                <Property Name="Butxt" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Şirket adı"/>
+                <Property Name="PlanVersion" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Plan varyantı"/>
+                <Property Name="Type" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Değerlendirilen tipi"/>
+                <Property Name="Werks" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Pers.alanı"/>
+                <Property Name="Id" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:label="Gnşl.nesne tn."/>
+                <Property Name="Name1" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Pers.aln.metni"/>
+                <Property Name="Btrtl" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Pers.alt alanı"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Değerlendirilen adı"/>
+                <Property Name="Btext" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Alt aln.metni"/>
+                <Property Name="Short" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Dğrlndrln.kısa tnm."/>
+                <Property Name="Persg" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Çalışan gr."/>
+                <Property Name="Ptext" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Çalışan gr.tnm."/>
+                <Property Name="Persk" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Çlşn.alt gr."/>
+                <Property Name="Pktxt" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Çlşn.alt gr.tnm"/>
+                <Property Name="Orgeh" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Org.birimi"/>
+                <Property Name="Orgtx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Plans" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Pozisyon"/>
+                <Property Name="Plstx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Stell" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="İş"/>
+                <Property Name="Stltx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Uname" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Tn./numara"/>
+                <Property Name="Email" Type="Edm.String" MaxLength="241" sap:unicode="false" sap:label="Uzun tn./no."/>
+                <Property Name="PhotoUrl" Type="Edm.String" sap:unicode="false" sap:label="PHOTO_URL"/>
+                <Property Name="Hiredate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="İşe giriş trh."/>
             </EntityType>
             <EntityType Name="HeaderOthers" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="PlanVersion" Type="Edm.String" MaxLength="2" sap:label="Plan Version"/>
-                <Property Name="Type" Type="Edm.String" MaxLength="2" sap:label="Further Part.Type"/>
-                <Property Name="Id" Type="Edm.String" MaxLength="45" sap:label="Extended obj.ID"/>
-                <Property Name="Name" Type="Edm.String" MaxLength="40" sap:label="Further Participants"/>
-                <Property Name="Short" Type="Edm.String" MaxLength="12" sap:label="Furth. P. Short Name"/>
-                <Property Name="RoleId" Type="Edm.String" MaxLength="2" sap:label="Appraisal Role"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="Bukrs" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Şirket kodu"/>
+                <Property Name="Butxt" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Şirket adı"/>
+                <Property Name="PlanVersion" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Plan varyantı"/>
+                <Property Name="Type" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Diğerleri tipi"/>
+                <Property Name="Werks" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Pers.alanı"/>
+                <Property Name="Id" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:label="Gnşl.nesne tn."/>
+                <Property Name="Name1" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Pers.aln.metni"/>
+                <Property Name="Btrtl" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Pers.alt alanı"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Diğer katılımcılar"/>
+                <Property Name="Btext" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Alt aln.metni"/>
+                <Property Name="Short" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Diğerleri kısa tnm."/>
+                <Property Name="Persg" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Çalışan gr."/>
+                <Property Name="RoleId" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Değerlendirme rolü"/>
+                <Property Name="Ptext" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Çalışan gr.tnm."/>
+                <Property Name="Persk" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Çlşn.alt gr."/>
+                <Property Name="Pktxt" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Çlşn.alt gr.tnm"/>
+                <Property Name="Orgeh" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Org.birimi"/>
+                <Property Name="Orgtx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Plans" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Pozisyon"/>
+                <Property Name="Plstx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Stell" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="İş"/>
+                <Property Name="Stltx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Uname" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Tn./numara"/>
+                <Property Name="Email" Type="Edm.String" MaxLength="241" sap:unicode="false" sap:label="Uzun tn./no."/>
+                <Property Name="PhotoUrl" Type="Edm.String" sap:unicode="false" sap:label="PHOTO_URL"/>
+                <Property Name="Hiredate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="İşe giriş trh."/>
             </EntityType>
             <EntityType Name="HeaderStatus" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="ApStatus" Type="Edm.String" MaxLength="1" sap:label="Appraisal Status"/>
-                <Property Name="ApStatusName" Type="Edm.String" MaxLength="40" sap:label="Appraisal Status"/>
-                <Property Name="ApStatusSub" Type="Edm.String" MaxLength="1" sap:label="Substatus"/>
-                <Property Name="ApStatusSubName" Type="Edm.String" MaxLength="40" sap:label="Substatus"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="ApStatus" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Değerlendirme durumu"/>
+                <Property Name="ApStatusName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Değerlendirme durumu"/>
+                <Property Name="ApStatusSub" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Alt durum"/>
+                <Property Name="ApStatusSubName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Alt durum"/>
             </EntityType>
             <EntityType Name="HeaderDates" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="ApStartDate" Type="Edm.DateTime" Precision="7" sap:label="Period"/>
-                <Property Name="ApEndDate" Type="Edm.DateTime" Precision="7" sap:label="To"/>
-                <Property Name="ApDateEarliest" Type="Edm.DateTime" Precision="7" sap:label="Earliest Appr. Date"/>
-                <Property Name="ApDateLatest" Type="Edm.DateTime" Precision="7" sap:label="Latest Appr. Date"/>
-                <Property Name="ObjDateSet" Type="Edm.DateTime" Precision="7" sap:label="Obj. Setting Date"/>
-                <Property Name="ReviewDateSet" Type="Edm.DateTime" Precision="7" sap:label="Review Date"/>
-                <Property Name="ApDateSet" Type="Edm.DateTime" Precision="7" sap:label="Appraisal Date"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="ApStartDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Dönem"/>
+                <Property Name="ApEndDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="son"/>
+                <Property Name="ApDateEarliest" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="En erken dğrl.trh."/>
+                <Property Name="ApDateLatest" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="En geç dğrl.tarihi"/>
+                <Property Name="ObjDateSet" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Hedef belirleme trh."/>
+                <Property Name="ReviewDateSet" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Gözden geçirme trh."/>
+                <Property Name="ApDateSet" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Değerlendirme tarihi"/>
             </EntityType>
             <EntityType Name="HeaderAddData" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="Fieldname" Type="Edm.String" MaxLength="30" sap:label="Field Name"/>
-                <Property Name="Fieldlabel" Type="Edm.String" MaxLength="55" sap:label="Field Label"/>
-                <Property Name="Fieldvalue" Type="Edm.String" MaxLength="132" sap:label="Field Value"/>
-                <Property Name="Fieldtext" Type="Edm.String" MaxLength="255" sap:label="Field Text"/>
-                <Property Name="Assignment" Type="Edm.String" MaxLength="1" sap:label="Assignment"/>
-                <Property Name="Row" Type="Edm.String" MaxLength="3"/>
-                <Property Name="Position" Type="Edm.String" MaxLength="3"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="Fieldname" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Alan adı"/>
+                <Property Name="Fieldlabel" Type="Edm.String" MaxLength="55" sap:unicode="false" sap:label="Alan tnmly."/>
+                <Property Name="Fieldvalue" Type="Edm.String" MaxLength="132" sap:unicode="false" sap:label="Alan değeri"/>
+                <Property Name="Fieldtext" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="Alan metni"/>
+                <Property Name="Assignment" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Tayin"/>
+                <Property Name="Row" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Sayaç"/>
+                <Property Name="Position" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Sayaç"/>
             </EntityType>
             <EntityType Name="HeaderDisplay" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="StatusSub" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Appraiser" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="MultiAppraiser" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Appraisee" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="MultiAppraisee" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="PartAppraisers" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Others" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="ValidityPeriod" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="ExecutionPeriod" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="ObjectiveSettingDate" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="ReviewDate" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="AppraisalDate" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="AddHeaderData" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Output Mode" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StatusSub" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Appraiser" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MultiAppraiser" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Appraisee" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MultiAppraisee" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PartAppraisers" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Others" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidityPeriod" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExecutionPeriod" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ObjectiveSettingDate" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReviewDate" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AppraisalDate" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AddHeaderData" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
             <EntityType Name="Buttons" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="Id" Type="Edm.String" MaxLength="15" sap:label="Pushbutton"/>
-                <Property Name="Text" Type="Edm.String" MaxLength="40" sap:label="Pushbutton Text"/>
-                <Property Name="Icon" Type="Edm.String" MaxLength="4"/>
-                <Property Name="Availability" Type="Edm.String" MaxLength="1" sap:label="PButton Availability"/>
-                <Property Name="StatusRelevant" Type="Edm.Boolean"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="Id" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Düğme"/>
+                <Property Name="Text" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Düğme metni"/>
+                <Property Name="Icon" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Metin alanları içersindeki ikonlar ( Yedek görüntü, kod)"/>
+                <Property Name="Availability" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Düğme klnb."/>
+                <Property Name="StatusRelevant" Type="Edm.Boolean" sap:unicode="false" sap:label="Gösterge"/>
+                <Property Name="FormRowIid" Type="Edm.String" MaxLength="4" sap:unicode="true" sap:label="Dahili satır tn."/>
+                <Property Name="FormId" Type="Edm.String" MaxLength="2" sap:unicode="true" sap:label="Form ID"/>
+                <Property Name="FbRowIid" Type="Edm.String" MaxLength="4" sap:unicode="true" sap:label="Dahili satır tn."/>
+                <Property Name="FbColumnIid" Type="Edm.String" MaxLength="4" sap:unicode="true" sap:label="Sütün tn."/>
+                <Property Name="FbQuestionText" Type="Edm.String" sap:unicode="true" sap:label="FB_QUESTION_TEXT"/>
+                <Property Name="StatusNoteAvailability" Type="Edm.String" MaxLength="1" sap:unicode="true" sap:label="Notu gir"/>
             </EntityType>
             <EntityType Name="BodyColumns" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="ColumnIid" Type="Edm.String" MaxLength="4" sap:label="Column ID"/>
-                <Property Name="ColumnId" Type="Edm.String" MaxLength="4" sap:label="Column ID"/>
-                <Property Name="PartApId" Type="Edm.String" MaxLength="4" sap:label="Part Appraisal ID"/>
-                <Property Name="ColumnName" Type="Edm.String" MaxLength="40" sap:label="Column"/>
-                <Property Name="Availability" Type="Edm.String" MaxLength="1" sap:label="Column Availability"/>
-                <Property Name="Owner" Type="Edm.String" MaxLength="1" sap:label="Single-Character Indicator"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="ColumnIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Sütün tn."/>
+                <Property Name="ColumnId" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Sütün tn."/>
+                <Property Name="PartApId" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Kıs.değerlendirme tn"/>
+                <Property Name="ColumnName" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Sütun"/>
+                <Property Name="Availability" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Sütun klnb."/>
+                <Property Name="Owner" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Karakter 1"/>
             </EntityType>
             <EntityType Name="BodyElements" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="RowIid" Type="Edm.String" MaxLength="4" sap:label="Internal Row ID"/>
-                <Property Name="Parent" Type="Edm.String" MaxLength="4" sap:label="Internal Row ID"/>
-                <Property Name="Child" Type="Edm.String" MaxLength="4" sap:label="Internal Row ID"/>
-                <Property Name="Brother" Type="Edm.String" MaxLength="4" sap:label="Internal Row ID"/>
-                <Property Name="ApLevel" Type="Edm.String" MaxLength="2" sap:label="Level"/>
-                <Property Name="RowSort" Type="Edm.String" MaxLength="4" sap:label="Sort"/>
-                <Property Name="ElementType" Type="Edm.String" MaxLength="2" sap:label="Element Type ID"/>
-                <Property Name="ElementId" Type="Edm.String" MaxLength="8" sap:label="Element ID"/>
-                <Property Name="ForeignType" Type="Edm.String" MaxLength="2" sap:label="External Type"/>
-                <Property Name="ForeignId" Type="Edm.String" MaxLength="45" sap:label="External ID"/>
-                <Property Name="Numbering" Type="Edm.String" MaxLength="40" sap:label="Numbering"/>
-                <Property Name="Name" Type="Edm.String" MaxLength="80" sap:label="Element Name"/>
-                <Property Name="FreeInput" Type="Edm.Boolean" sap:label="Free Input"/>
-                <Property Name="LayoutText" Type="Edm.String" MaxLength="1" sap:label="Text Layout"/>
-                <Property Name="LayoutValues" Type="Edm.String" MaxLength="1" sap:label="Layout of Values"/>
-                <Property Name="LayoutNoteLine" Type="Edm.String" MaxLength="1" sap:label="Lines Res. for Note"/>
-                <Property Name="LayoutMaxChar" Type="Edm.String" MaxLength="3" sap:label="Maximum Char in Note"/>
-                <Property Name="ExitAddFix" Type="Edm.String" MaxLength="30" sap:label="Fixed Enhancement"/>
-                <Property Name="ExitAddFree" Type="Edm.String" MaxLength="30" sap:label="Free Enhancement"/>
-                <Property Name="ExitDelete" Type="Edm.String" MaxLength="30" sap:label="Element Deletion"/>
-                <Property Name="UsedColumns" Type="Edm.String" MaxLength="2" sap:label="Two-digit no."/>
-                <Property Name="Availability" Type="Edm.String" MaxLength="1"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="RowIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn."/>
+                <Property Name="RowSort" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Sıralama"/>
+                <Property Name="ApLevel" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Düzey"/>
+                <Property Name="Availability" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Öğe kullanılabilirliği"/>
+                <Property Name="ElementType" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Öğe tipi tn."/>
+                <Property Name="ElementId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Öğe tanıtıcısı"/>
+                <Property Name="ForeignId" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:label="Harici tanıtıcı"/>
+                <Property Name="ForeignType" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Harici tip"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="80" sap:unicode="false" sap:label="Öğe adı"/>
+                <Property Name="NameVisible" Type="Edm.Boolean" sap:unicode="false" sap:label="DOĞRU"/>
+                <Property Name="NameString" Type="Edm.String" sap:unicode="false" sap:label="NAME_STRING"/>
+                <Property Name="Description" Type="Edm.String" sap:unicode="false" sap:label="DESCRIPTION"/>
+                <Property Name="DescriptionVisible" Type="Edm.Boolean" sap:unicode="false" sap:label="DOĞRU"/>
+                <Property Name="EnhancementVisible" Type="Edm.Boolean" sap:unicode="false" sap:label="DOĞRU"/>
+                <Property Name="DeletionVisible" Type="Edm.Boolean" sap:unicode="false" sap:label="DOĞRU"/>
+                <Property Name="ExitAddFix" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Sabit genişletme"/>
+                <Property Name="ExitAddFree" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Serbest genişletme"/>
+                <Property Name="ExitDelete" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Öğenin silinmesi"/>
+                <Property Name="FormId" Type="Edm.String" MaxLength="2" sap:unicode="true" sap:label="Form ID"/>
+                <Property Name="FormName" Type="Edm.String" MaxLength="80" sap:unicode="true" sap:label="Form Adı"/>
+                <Property Name="FormColumnIid" Type="Edm.String" MaxLength="4" sap:unicode="true" sap:label="Sütün tn."/>
+                <Property Name="FormEditable" Type="Edm.Boolean" sap:unicode="false" sap:label="DOĞRU"/>
+                <Property Name="FormExist" Type="Edm.Boolean" sap:unicode="false" sap:label="DOĞRU"/>
+                <Property Name="AttachmentVisible" Type="Edm.Boolean" sap:unicode="false" sap:label="DOĞRU"/>
+                <Property Name="FreeInput" Type="Edm.Boolean" sap:unicode="false" sap:label="Serbest giriş"/>
+                <Property Name="Parent" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn."/>
+                <Property Name="Child" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn."/>
+                <Property Name="Brother" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn."/>
+                <Property Name="MaxChildCount" Type="Edm.Int32" sap:unicode="false" sap:label="Table Row"/>
+                <Property Name="MinChildCount" Type="Edm.Int32" sap:unicode="false" sap:label="Table Row"/>
+                <Property Name="LayoutMaxChar" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Notta azami karakter"/>
+                <Property Name="LayoutNoteLine" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Not satır sayısı"/>
+                <Property Name="LayoutText" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Metin düzeni"/>
+                <Property Name="LayoutValues" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Değer için düzen"/>
+                <Property Name="Numbering" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Numaralama"/>
+                <Property Name="NumberingVisible" Type="Edm.Boolean" sap:unicode="false" sap:label="DOĞRU"/>
+                <Property Name="UsedColumns" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="İki basamaklıNo"/>
+                <Property Name="FappAvgLvl11" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="true" sap:label="Sayısal değer"/>
+                <Property Name="FappAvgLvl05" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="true" sap:label="Sayısal değer"/>
             </EntityType>
             <EntityType Name="BodyElementButtons" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="RowIid" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Internal Row ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Pushbutton" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Pushbutton Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Icon" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Availability" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="PButton Availability" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="StatusRelevant" Type="Edm.Boolean" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RowIid" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Düğme" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Düğme metni" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Icon" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Metin alanları içersindeki ikonlar ( Yedek görüntü, kod)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Availability" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Düğme klnb." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StatusRelevant" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Gösterge" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
             <EntityType Name="BodyCells" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="RowIid" Type="Edm.String" MaxLength="4" sap:label="Internal Row ID"/>
-                <Property Name="ColumnIid" Type="Edm.String" MaxLength="4" sap:label="Column ID"/>
-                <Property Name="CellValueAvailability" Type="Edm.String" MaxLength="1" sap:label="Value Availability"/>
-                <Property Name="ValueTextAvailable" Type="Edm.String" MaxLength="1" sap:label="Value Text Available"/>
-                <Property Name="CellNoteAvailability" Type="Edm.String" MaxLength="1" sap:label="Note Availability"/>
-                <Property Name="CellNoteLength" Type="Edm.String" MaxLength="3" sap:label="Length"/>
-                <Property Name="CellInputNote5022" Type="Edm.String" MaxLength="1" sap:label="Note"/>
-                <Property Name="ValueTxt" Type="Edm.String" MaxLength="20" sap:label="Value"/>
-                <Property Name="ValueNum" Type="Edm.Decimal" Precision="15" Scale="3" sap:label="Numeric Value"/>
-                <Property Name="ValueNnv" Type="Edm.String" MaxLength="15" sap:label="Non-Numeric Value"/>
-                <Property Name="NoValue" Type="Edm.Boolean" sap:label="No Value"/>
-                <Property Name="ValueText" Type="Edm.String" MaxLength="60" sap:label="Value Text"/>
-                <Property Name="CellValueClass" Type="Edm.String" MaxLength="2" sap:label="Value Class"/>
-                <Property Name="CellValueType" Type="Edm.String" MaxLength="32" sap:label="Value List"/>
-                <Property Name="CellValueExit" Type="Edm.String" MaxLength="30" sap:label="Value Determination"/>
-                <Property Name="ValDetOccur" Type="Edm.String" MaxLength="1" sap:label="Value Determination"/>
-                <Property Name="CellEventExit" Type="Edm.String" MaxLength="30" sap:label="Dynamic Event"/>
-                <Property Name="DynEvtOccur" Type="Edm.String" MaxLength="1" sap:label="Event"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="RowIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn."/>
+                <Property Name="ColumnIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Sütün tn."/>
+                <Property Name="CaptionNote" Type="Edm.String" sap:unicode="false" sap:label="CAPTION_NOTE"/>
+                <Property Name="Caption" Type="Edm.String" sap:unicode="false" sap:label="CAPTION"/>
+                <Property Name="ChkboxValueText" Type="Edm.String" sap:unicode="false" sap:label="CHKBOX_VALUE_TEXT"/>
+                <Property Name="OutputMode" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Çıktı kipi"/>
+                <Property Name="CellValueAvailability" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Değer klnb."/>
+                <Property Name="ValueDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="VALUE_DATE"/>
+                <Property Name="ValueString" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Değer"/>
+                <Property Name="ValueTextAvailable" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Değer metni mevcut"/>
+                <Property Name="CellNoteAvailability" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Not klnb."/>
+                <Property Name="NoteString" Type="Edm.String" sap:unicode="false" sap:label="NOTE_STRING"/>
+                <Property Name="CellNoteLength" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Uzunluk"/>
+                <Property Name="NoteType" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Not tipi"/>
+                <Property Name="CellInputNote5022" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Not"/>
+                <Property Name="NoteLines" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Not satır sayısı"/>
+                <Property Name="ValueTxt" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Değer"/>
+                <Property Name="ValueType" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Değer tipi"/>
+                <Property Name="LayoutType" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Düzen türü"/>
+                <Property Name="ValueNum" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="false" sap:label="Sayısal değer"/>
+                <Property Name="ListboxSelectIndex" Type="Edm.Int32" sap:unicode="false" sap:label="LISTBOX_SELECT_INDEX"/>
+                <Property Name="ValueNnv" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Sayısal olmayan dğr."/>
+                <Property Name="NoValue" Type="Edm.Boolean" sap:unicode="false" sap:label="Değer yok"/>
+                <Property Name="RadioSelectValue" Type="Edm.String" sap:unicode="false" sap:label="RADIO_SELECT_VALUE"/>
+                <Property Name="ValueText" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="Değer mtn."/>
+                <Property Name="CellValueClass" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Değer sınıfı"/>
+                <Property Name="CellValueType" Type="Edm.String" MaxLength="32" sap:unicode="false" sap:label="Değer listesi"/>
+                <Property Name="CellValueExit" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Değer belirlemesi"/>
+                <Property Name="ValDetOccur" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Değer belirlemesi"/>
+                <Property Name="CellEventExit" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Dinamik olay"/>
+                <Property Name="DynEvtOccur" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Olay"/>
             </EntityType>
             <EntityType Name="BodyCellNotes" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="AppraisalId"/>
                 </Key>
-                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:label="Appraisal Doc. ID"/>
-                <Property Name="RowIid" Type="Edm.String" MaxLength="4" sap:label="Internal Row ID"/>
-                <Property Name="ColumnIid" Type="Edm.String" MaxLength="4" sap:label="Column ID"/>
-                <Property Name="Tabseqnr" Type="Edm.String" MaxLength="6" sap:label="Sequence number"/>
-                <Property Name="Tdformat" Type="Edm.String" MaxLength="2" sap:label="Tag column"/>
-                <Property Name="Tdline" Type="Edm.String" MaxLength="132"/>
-                <Property Name="LineStatus" Type="Edm.String" MaxLength="1" sap:label="Note Status"/>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="RowIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn."/>
+                <Property Name="ColumnIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Sütün tn."/>
+                <Property Name="Tabseqnr" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="Sıra numarası"/>
+                <Property Name="Tdformat" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Tag column"/>
+                <Property Name="Tdline" Type="Edm.String" MaxLength="132" sap:unicode="false" sap:label="Text Line"/>
+                <Property Name="LineStatus" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Not durumu"/>
             </EntityType>
+            <EntityType Name="EmployeeInfo" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personel no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PhotoUrl" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="PHOTO_URL" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PhotoMime" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="PHOTO_MIME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Return" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="İleti tipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Message Class" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Number" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Message Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="İleti metni" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LogNo" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Günlük no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LogMsgNo" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="İleti numarası" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MessageV1" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Message Variable" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MessageV2" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Message Variable" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MessageV3" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Message Variable" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MessageV4" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Message Variable" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Parameter" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="Parametre adı" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Row" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Parametre st." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Field" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Alan adı" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="System" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Mantıksal sistem" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ReturnOp" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NewValueDetermined" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Karakter 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UiDeferred" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Karakter 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DocumentLeave" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Karakter 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="QualDisplay" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="TITLE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OtypeText" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="OTYPE_TEXT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="FeFlatAvailable" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="Description" Type="Edm.String" sap:unicode="false" sap:label="DESCRIPTION"/>
+                <Property Name="Plvar" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Plan varyantı"/>
+                <Property Name="Otype" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Nesne tipi"/>
+                <Property Name="Objid" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Nesne tn"/>
+                <Property Name="Begda" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Başlangıç trh."/>
+                <Property Name="Endda" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Bitiş tarihi"/>
+                <Property Name="Istat" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Plan durumu"/>
+                <Property Name="Histo" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Tarihçe kaydı"/>
+                <Property Name="Short" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Nesne kodu"/>
+                <Property Name="Stext" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Realo" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:label="Gnşl.nesne tn."/>
+            </EntityType>
+            <EntityType Name="FeStrucAvailable" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="Otype" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Nesne tipi"/>
+                <Property Name="Objid" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Nesne tn"/>
+                <Property Name="Stext" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Begda" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Başlangıç trh."/>
+                <Property Name="Endda" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Bitiş tarihi"/>
+                <Property Name="Level" Type="Edm.Int32" sap:unicode="false" sap:label="Düzey"/>
+                <Property Name="PupOtype" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Nesne tipi"/>
+                <Property Name="PupObjid" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Nesne tn"/>
+                <Property Name="Vcount" Type="Edm.Int32" sap:unicode="false" sap:label="Nesne sayısı"/>
+                <Property Name="P10020001" Type="Edm.String" sap:unicode="true" sap:label="P1002_0001"/>
+                <Property Name="P10020003" Type="Edm.String" sap:unicode="true" sap:label="P1002_0003"/>
+            </EntityType>
+            <EntityType Name="FeAlreadyChosen" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="Plvar" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Plan varyantı"/>
+                <Property Name="Otype" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Nesne tipi"/>
+                <Property Name="Sobid" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:label="Bağlantılı nsn."/>
+            </EntityType>
+            <EntityType Name="FeSelectableOtype" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="Otype" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Nesne tipi"/>
+            </EntityType>
+            <EntityType Name="FeBodyElementsAdd" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NewElementType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Harici tip" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NewElementId" Type="Edm.String" Nullable="false" MaxLength="45" sap:unicode="false" sap:label="Harici tanıtıcı" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Weighting" Type="Edm.Decimal" Nullable="false" Precision="5" Scale="2" sap:unicode="false" sap:label="Öğe ağırlıklandırma" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NoValue" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Değer yok" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReferenceType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Referans tipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReferenceId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Referans tanıtıcısı" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="FormQuestions" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="RowIid" Type="Edm.String" MaxLength="4" sap:unicode="true" sap:label="Dahili satır tn."/>
+                <Property Name="Frmid" Type="Edm.String" MaxLength="2" sap:unicode="true" sap:label="Form ID"/>
+                <Property Name="Queid" Type="Edm.String" MaxLength="3" sap:unicode="true" sap:label="Soru ID"/>
+                <Property Name="Quetx" Type="Edm.String" MaxLength="255" sap:unicode="true" sap:label="Soru Metni"/>
+                <Property Name="Quepr" Type="Edm.Boolean" sap:unicode="false" sap:label="DOĞRU"/>
+                <Property Name="Ansty" Type="Edm.String" MaxLength="2" sap:unicode="true" sap:label="Cevap Türü"/>
+                <Property Name="Ansid" Type="Edm.String" MaxLength="4" sap:unicode="true" sap:label="Cevap"/>
+                <Property Name="Anstx" Type="Edm.String" MaxLength="255" sap:unicode="true" sap:label="Cevap Metni"/>
+            </EntityType>
+            <EntityType Name="FormAnswers" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="RowIid" Type="Edm.String" MaxLength="4" sap:unicode="true" sap:label="Dahili satır tn."/>
+                <Property Name="Frmid" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Form ID"/>
+                <Property Name="Queid" Type="Edm.String" MaxLength="3" sap:unicode="true" sap:label="Soru ID"/>
+                <Property Name="Ansid" Type="Edm.String" MaxLength="4" sap:unicode="true" sap:label="Cevap"/>
+                <Property Name="Anstx" Type="Edm.String" MaxLength="40" sap:unicode="true" sap:label="Yetkinlik"/>
+                <Property Name="Qusid" Type="Edm.String" MaxLength="3" sap:unicode="true" sap:label="Soru ID"/>
+            </EntityType>
+            <EntityType Name="Competencies" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="Plvar" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Plan varyantı"/>
+                <Property Name="Otype" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Nesne tipi"/>
+                <Property Name="Objid" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Nesne tn"/>
+                <Property Name="Begda" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Başlangıç trh."/>
+                <Property Name="Endda" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Bitiş tarihi"/>
+                <Property Name="Istat" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Plan durumu"/>
+                <Property Name="Histo" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Tarihçe kaydı"/>
+                <Property Name="Short" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Nesne kodu"/>
+                <Property Name="Stext" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Realo" Type="Edm.String" MaxLength="45" sap:unicode="false" sap:label="Gnşl.nesne tn."/>
+                <Property Name="Description" Type="Edm.String" sap:unicode="false" sap:label="DESCRIPTION"/>
+            </EntityType>
+            <EntityType Name="DevTrainings" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                    <PropertyRef Name="Seqno"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personel no."/>
+                <Property Name="Seqno" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Numara"/>
+                <Property Name="Tratx" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="Eğitim Adı"/>
+                <Property Name="Trayr" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Eğitim Yılı"/>
+            </EntityType>
+            <EntityType Name="DocTab" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TabIcon" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="TAB_ICON" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RowIid" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Parent" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Child" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Brother" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ApLevel" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Düzey" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RowSort" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sıralama" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ElementType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Öğe tipi tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ElementId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Öğe tanıtıcısı" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ForeignType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Harici tip" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ForeignId" Type="Edm.String" Nullable="false" MaxLength="45" sap:unicode="false" sap:label="Harici tanıtıcı" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CombinedKey" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Birleştirilen ahtr." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tab" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Kartotek" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="BodyElementDescr" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="RowIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn."/>
+                <Property Name="Tabseqnr" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="Sıra numarası"/>
+                <Property Name="Tline" Type="Edm.String" MaxLength="79" sap:unicode="false" sap:label="Satır"/>
+                <Property Name="Tformat" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Tag column"/>
+            </EntityType>
+            <EntityType Name="BodyCellValues" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="RowIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn."/>
+                <Property Name="ColumnIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Sütün tn."/>
+                <Property Name="Description" Type="Edm.String" sap:unicode="false" sap:label="DESCRIPTION"/>
+                <Property Name="ValueUiId" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="ID of Value in UI"/>
+                <Property Name="ValueIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Dahili değer tn."/>
+                <Property Name="ValueEid" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Harici değer tn."/>
+                <Property Name="ValueIcon" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="İkon"/>
+                <Property Name="ValueText" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="Değer mtn."/>
+            </EntityType>
+            <EntityType Name="BodyCellRanges" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="RowIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn."/>
+                <Property Name="ColumnIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Sütün tn."/>
+                <Property Name="ValueIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Dahili değer tn."/>
+                <Property Name="ValueIcon" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="İkon"/>
+                <Property Name="Low" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="false" sap:label="Asgari değer"/>
+                <Property Name="High" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="false" sap:label="Azami değer"/>
+                <Property Name="Distance" Type="Edm.Decimal" Precision="12" Scale="3" sap:unicode="false" sap:label="Aralık"/>
+                <Property Name="Text" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="Değer mtn."/>
+            </EntityType>
+            <EntityType Name="DocumentOperations" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                    <PropertyRef Name="PartApId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="PartApId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Kıs.değerlendirme tn"/>
+                <Property Name="RowIid" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn."/>
+                <Property Name="ButtonId" Type="Edm.String" MaxLength="70" sap:unicode="false" sap:label="Function"/>
+                <Property Name="Mode" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Karakter 1"/>
+                <Property Name="Operation" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Operasyon"/>
+                <Property Name="FeReferenceType" Type="Edm.String" MaxLength="2" sap:unicode="true" sap:label="Öğe tipi tn."/>
+                <Property Name="FeReferenceId" Type="Edm.String" MaxLength="8" sap:unicode="true" sap:label="Öğe tanıtıcısı"/>
+                <Property Name="StatusNote" Type="Edm.String" sap:unicode="false" sap:label="STATUS_NOTE"/>
+                <NavigationProperty Name="DocTab" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.DocTabAss" FromRole="FromRole_DocTabAss" ToRole="ToRole_DocTabAss"/>
+                <NavigationProperty Name="BodyElements" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.BodyElementsAss" FromRole="FromRole_BodyElementsAss" ToRole="ToRole_BodyElementsAss"/>
+                <NavigationProperty Name="BodyCellValues" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.BodyCellValuesAss" FromRole="FromRole_BodyCellValuesAss" ToRole="ToRole_BodyCellValuesAss"/>
+                <NavigationProperty Name="Objectives" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.ObjectivesAss" FromRole="FromRole_ObjectivesAss" ToRole="ToRole_ObjectivesAss"/>
+                <NavigationProperty Name="ResultTable" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.ResultTableAss" FromRole="FromRole_ResultTableAss" ToRole="ToRole_ResultTableAss"/>
+                <NavigationProperty Name="DevPlanActivities" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.DevPlanActivitiesAss" FromRole="FromRole_DevPlanActivitiesAss" ToRole="ToRole_DevPlanActivitiesAss"/>
+                <NavigationProperty Name="FormParameters" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.FormParametersAss" FromRole="FromRole_FormParametersAss" ToRole="ToRole_FormParametersAss"/>
+                <NavigationProperty Name="Return" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.ReturnAss" FromRole="FromRole_ReturnAss" ToRole="ToRole_ReturnAss"/>
+                <NavigationProperty Name="ReturnOp" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.ReturnOpAss" FromRole="FromRole_ReturnOpAss" ToRole="ToRole_ReturnOpAss"/>
+                <NavigationProperty Name="FeAlreadyChosen" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.FeAlreadyChosenAss" FromRole="FromRole_FeAlreadyChosenAss" ToRole="ToRole_FeAlreadyChosenAss"/>
+                <NavigationProperty Name="FeFlatAvailable" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.FeFlatAvailableAss" FromRole="FromRole_FeFlatAvailableAss" ToRole="ToRole_FeFlatAvailableAss"/>
+                <NavigationProperty Name="FeSelectableOtype" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.FeSelectableOtypeAss" FromRole="FromRole_FeSelectableOtypeAss" ToRole="ToRole_FeSelectableOtypeAss"/>
+                <NavigationProperty Name="FeStrucAvailable" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.FeStrucAvailableAss" FromRole="FromRole_FeStrucAvailableAss" ToRole="ToRole_FeStrucAvailableAss"/>
+                <NavigationProperty Name="FeBodyElementsAdd" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.FeBodyElementsAddAss" FromRole="FromRole_FeBodyElementsAddAss" ToRole="ToRole_FeBodyElementsAddAss"/>
+                <NavigationProperty Name="FormQuestions" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.FormQuestionsAss" FromRole="FromRole_FormQuestionsAss" ToRole="ToRole_FormQuestionsAss"/>
+                <NavigationProperty Name="FormAnswers" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.FormAnswersAss" FromRole="FromRole_FormAnswersAss" ToRole="ToRole_FormAnswersAss"/>
+                <NavigationProperty Name="Competencies" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.ComptenciesAss" FromRole="FromRole_ComptenciesAss" ToRole="ToRole_ComptenciesAss"/>
+                <NavigationProperty Name="HeaderAppraisee" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.HeaderAppraiseeAss" FromRole="FromRole_HeaderAppraiseeAss" ToRole="ToRole_HeaderAppraiseeAss"/>
+                <NavigationProperty Name="HeaderAppraiser" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.HeaderAppraiserAss" FromRole="FromRole_HeaderAppraiserAss" ToRole="ToRole_HeaderAppraiserAss"/>
+                <NavigationProperty Name="HeaderOthers" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.HeaderOthersAss" FromRole="FromRole_HeaderOthersAss" ToRole="ToRole_HeaderOthersAss"/>
+                <NavigationProperty Name="HeaderDates" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.HeaderDatesAss" FromRole="FromRole_HeaderDatesAss" ToRole="ToRole_HeaderDatesAss"/>
+                <NavigationProperty Name="HeaderDisplay" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.HeaderDisplayAss" FromRole="FromRole_HeaderDisplayAss" ToRole="ToRole_HeaderDisplayAss"/>
+                <NavigationProperty Name="HeaderStatus" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.HeaderStatusAss" FromRole="FromRole_HeaderStatusAss" ToRole="ToRole_HeaderStatusAss"/>
+                <NavigationProperty Name="HeaderText" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.HeaderTextAss" FromRole="FromRole_HeaderTextAss" ToRole="ToRole_HeaderTextAss"/>
+                <NavigationProperty Name="DocProcessing" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.DocProcessingAss" FromRole="FromRole_DocProcessingAss" ToRole="ToRole_DocProcessingAss"/>
+                <NavigationProperty Name="BodyElementButtons" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.BodyElementButtonsAss" FromRole="FromRole_BodyElementButtonsAss" ToRole="ToRole_BodyElementButtonsAss"/>
+                <NavigationProperty Name="BodyCellRanges" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.BodyCellRangesAss" FromRole="FromRole_BodyCellRangesAss" ToRole="ToRole_BodyCellRangesAss"/>
+                <NavigationProperty Name="Buttons" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.ButtonsAss" FromRole="FromRole_ButtonsAss" ToRole="ToRole_ButtonsAss"/>
+                <NavigationProperty Name="BodyColumns" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.BodyColumnsAss" FromRole="FromRole_BodyColumnsAss" ToRole="ToRole_BodyColumnsAss"/>
+                <NavigationProperty Name="BodyCells" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.BodyCellsAss" FromRole="FromRole_BodyCellsAss" ToRole="ToRole_BodyCellsAss"/>
+                <NavigationProperty Name="Intros" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.OperationToIntro" FromRole="FromRole_OperationToIntro" ToRole="ToRole_OperationToIntro"/>
+                <NavigationProperty Name="StatusNotes" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.StatusNotesAss" FromRole="FromRole_StatusNotesAss" ToRole="ToRole_StatusNotesAss"/>
+            </EntityType>
+            <EntityType Name="Attachment" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                    <PropertyRef Name="RowIid"/>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="RowIid" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn."/>
+                <Property Name="MimeType" Type="Edm.String" sap:unicode="true" sap:label="MIME_TYPE"/>
+                <Property Name="LastDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Son değişiklik"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="42" sap:unicode="false" sap:label="Document ID"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="Ek adı"/>
+                <Property Name="Type" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Tip"/>
+                <Property Name="LastUser" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Son değiştiren"/>
+                <Property Name="Uname" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Kullanıcı"/>
+            </EntityType>
+            <EntityType Name="AttachOperations" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                    <PropertyRef Name="RowIid"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RowIid" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Dahili satır tn." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Attachment" Relationship="ZHCM_UX_HAP_TKAO_SRV_01.AttachmentAss" FromRole="FromRole_AttachmentAss" ToRole="ToRole_AttachmentAss"/>
+            </EntityType>
+            <EntityType Name="Intro" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TemplateId"/>
+                    <PropertyRef Name="Seqnr"/>
+                </Key>
+                <Property Name="TemplateId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Şablon ID"/>
+                <Property Name="Seqnr" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Sıra numarası"/>
+                <Property Name="Selector" Type="Edm.String" MaxLength="120" sap:unicode="false" sap:label="Eleman form tanıtıcı"/>
+                <Property Name="Title" Type="Edm.String" MaxLength="70" sap:unicode="false" sap:label="Başlık"/>
+                <Property Name="Location" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Pozisyon"/>
+                <Property Name="Arrow" Type="Edm.Boolean" sap:unicode="false" sap:label="Ok görünsün"/>
+                <Property Name="ContentLine1" Type="Edm.String" MaxLength="200" sap:unicode="false" sap:label="İçerik"/>
+                <Property Name="ContentLine2" Type="Edm.String" MaxLength="200" sap:unicode="false" sap:label="İçerik"/>
+                <Property Name="ContentLine3" Type="Edm.String" MaxLength="200" sap:unicode="false" sap:label="İçerik"/>
+            </EntityType>
+            <EntityType Name="StatusNotes" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AppraisalId"/>
+                </Key>
+                <Property Name="AppraisalId" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Değerlendirme tn."/>
+                <Property Name="StringNote" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="STRING_NOTE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlanVersion" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Plan varyantı"/>
+                <Property Name="Tabseqnr" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="Sıra numarası"/>
+                <Property Name="Tdformat" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Biçim sütunu"/>
+                <Property Name="Tdline" Type="Edm.String" MaxLength="132" sap:unicode="false" sap:label="Metin satırı"/>
+                <Property Name="LineStatus" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Not durumu"/>
+            </EntityType>
+            <Association Name="AttachmentAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.AttachOperations" Multiplicity="1" Role="FromRole_AttachmentAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.Attachment" Multiplicity="*" Role="ToRole_AttachmentAss"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_AttachmentAss">
+                        <PropertyRef Name="AppraisalId"/>
+                        <PropertyRef Name="RowIid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_AttachmentAss">
+                        <PropertyRef Name="AppraisalId"/>
+                        <PropertyRef Name="RowIid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ResultTableAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_ResultTableAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.ResultTable" Multiplicity="*" Role="ToRole_ResultTableAss"/>
+            </Association>
+            <Association Name="DevPlanActivitiesAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_DevPlanActivitiesAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DevPlanActivities" Multiplicity="*" Role="ToRole_DevPlanActivitiesAss"/>
+            </Association>
+            <Association Name="FormParametersAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_FormParametersAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.FormParameters" Multiplicity="*" Role="ToRole_FormParametersAss"/>
+            </Association>
+            <Association Name="ReturnAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_ReturnAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.Return" Multiplicity="*" Role="ToRole_ReturnAss"/>
+            </Association>
+            <Association Name="ReturnOpAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_ReturnOpAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.ReturnOp" Multiplicity="1" Role="ToRole_ReturnOpAss"/>
+            </Association>
+            <Association Name="FeAlreadyChosenAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_FeAlreadyChosenAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.FeAlreadyChosen" Multiplicity="*" Role="ToRole_FeAlreadyChosenAss"/>
+            </Association>
+            <Association Name="FeFlatAvailableAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_FeFlatAvailableAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.FeFlatAvailable" Multiplicity="*" Role="ToRole_FeFlatAvailableAss"/>
+            </Association>
+            <Association Name="FeSelectableOtypeAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_FeSelectableOtypeAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.FeSelectableOtype" Multiplicity="*" Role="ToRole_FeSelectableOtypeAss"/>
+            </Association>
+            <Association Name="FeStrucAvailableAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_FeStrucAvailableAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.FeStrucAvailable" Multiplicity="*" Role="ToRole_FeStrucAvailableAss"/>
+            </Association>
+            <Association Name="FeBodyElementsAddAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_FeBodyElementsAddAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.FeBodyElementsAdd" Multiplicity="*" Role="ToRole_FeBodyElementsAddAss"/>
+            </Association>
+            <Association Name="FormQuestionsAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_FormQuestionsAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.FormQuestions" Multiplicity="*" Role="ToRole_FormQuestionsAss"/>
+            </Association>
+            <Association Name="FormAnswersAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_FormAnswersAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.FormAnswers" Multiplicity="*" Role="ToRole_FormAnswersAss"/>
+            </Association>
+            <Association Name="ComptenciesAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_ComptenciesAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.Competencies" Multiplicity="*" Role="ToRole_ComptenciesAss"/>
+            </Association>
+            <Association Name="BodyElementsAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_BodyElementsAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.BodyElements" Multiplicity="*" Role="ToRole_BodyElementsAss"/>
+            </Association>
+            <Association Name="BodyColumnsAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_BodyColumnsAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.BodyColumns" Multiplicity="*" Role="ToRole_BodyColumnsAss"/>
+            </Association>
+            <Association Name="BodyCellsAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_BodyCellsAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.BodyCells" Multiplicity="*" Role="ToRole_BodyCellsAss"/>
+            </Association>
+            <Association Name="BodyCellValuesAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_BodyCellValuesAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.BodyCellValues" Multiplicity="*" Role="ToRole_BodyCellValuesAss"/>
+            </Association>
+            <Association Name="HeaderAppraiseeAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_HeaderAppraiseeAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.HeaderAppraisee" Multiplicity="*" Role="ToRole_HeaderAppraiseeAss"/>
+            </Association>
+            <Association Name="HeaderAppraiserAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_HeaderAppraiserAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.HeaderAppraiser" Multiplicity="*" Role="ToRole_HeaderAppraiserAss"/>
+            </Association>
+            <Association Name="HeaderOthersAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_HeaderOthersAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.HeaderOthers" Multiplicity="*" Role="ToRole_HeaderOthersAss"/>
+            </Association>
+            <Association Name="HeaderDatesAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_HeaderDatesAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.HeaderDates" Multiplicity="1" Role="ToRole_HeaderDatesAss"/>
+            </Association>
+            <Association Name="HeaderDisplayAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_HeaderDisplayAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.HeaderDisplay" Multiplicity="1" Role="ToRole_HeaderDisplayAss"/>
+            </Association>
+            <Association Name="HeaderStatusAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_HeaderStatusAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.HeaderStatus" Multiplicity="1" Role="ToRole_HeaderStatusAss"/>
+            </Association>
+            <Association Name="HeaderTextAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_HeaderTextAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.HeaderText" Multiplicity="1" Role="ToRole_HeaderTextAss"/>
+            </Association>
+            <Association Name="DocProcessingAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_DocProcessingAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocProcessing" Multiplicity="1" Role="ToRole_DocProcessingAss"/>
+            </Association>
+            <Association Name="BodyElementButtonsAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_BodyElementButtonsAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.BodyElementButtons" Multiplicity="*" Role="ToRole_BodyElementButtonsAss"/>
+            </Association>
+            <Association Name="BodyCellRangesAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_BodyCellRangesAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.BodyCellRanges" Multiplicity="*" Role="ToRole_BodyCellRangesAss"/>
+            </Association>
+            <Association Name="ButtonsAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_ButtonsAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.Buttons" Multiplicity="*" Role="ToRole_ButtonsAss"/>
+            </Association>
+            <Association Name="DocTabAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_DocTabAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocTab" Multiplicity="*" Role="ToRole_DocTabAss"/>
+            </Association>
+            <Association Name="OperationToIntro" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_OperationToIntro"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.Intro" Multiplicity="*" Role="ToRole_OperationToIntro"/>
+            </Association>
+            <Association Name="StatusNotesAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_StatusNotesAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.StatusNotes" Multiplicity="*" Role="ToRole_StatusNotesAss"/>
+            </Association>
+            <Association Name="ObjectivesAss" sap:content-version="1">
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" Multiplicity="1" Role="FromRole_ObjectivesAss"/>
+                <End Type="ZHCM_UX_HAP_TKAO_SRV_01.Objectives" Multiplicity="*" Role="ToRole_ObjectivesAss"/>
+            </Association>
             <EntityContainer Name="ZHCM_UX_HAP_TKAO_SRV_01_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ObjectivesSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.Objectives" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MimeInfoSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.MimeInfo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ResultTableSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.ResultTable" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="DevPlanActivitiesSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.DevPlanActivities" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FormParametersSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.FormParameters" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="DocumentListSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.DocumentList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="DocProcessingSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.DocProcessing" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="HeaderAppraiserSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.HeaderAppraiser" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
@@ -304,59 +925,233 @@
                 <EntitySet Name="BodyElementButtonsSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.BodyElementButtons" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="BodyCellsSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.BodyCells" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="BodyCellNotesSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.BodyCellNotes" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="EmployeeInfoSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.EmployeeInfo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ReturnSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.Return" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ReturnOpSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.ReturnOp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FeFlatAvailableSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.FeFlatAvailable" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FeStrucAvailableSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.FeStrucAvailable" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FeAlreadyChosenSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.FeAlreadyChosen" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FeSelectableOtypeSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.FeSelectableOtype" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FeBodyElementsAddSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.FeBodyElementsAdd" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FormQuestionsSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.FormQuestions" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FormAnswersSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.FormAnswers" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CompetenciesSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.Competencies" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="DevTrainingsSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.DevTrainings" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="DocTabSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.DocTab" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="BodyElementDescrSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.BodyElementDescr" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="BodyCellValuesSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.BodyCellValues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="BodyCellRangesSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.BodyCellRanges" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="DocumentOperationsSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.DocumentOperations" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="AttachmentSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.Attachment" sap:updatable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="AttachOperationsSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.AttachOperations" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="IntroSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.Intro" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="StatusNotesSet" EntityType="ZHCM_UX_HAP_TKAO_SRV_01.StatusNotes" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="HeaderOthersAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.HeaderOthersAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_HeaderOthersAss"/>
+                    <End EntitySet="HeaderOthersSet" Role="ToRole_HeaderOthersAss"/>
+                </AssociationSet>
+                <AssociationSet Name="ButtonsAss_AssocSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.ButtonsAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_ButtonsAss"/>
+                    <End EntitySet="ButtonsSet" Role="ToRole_ButtonsAss"/>
+                </AssociationSet>
+                <AssociationSet Name="BodyCellsAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.BodyCellsAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_BodyCellsAss"/>
+                    <End EntitySet="BodyCellsSet" Role="ToRole_BodyCellsAss"/>
+                </AssociationSet>
+                <AssociationSet Name="BodyCellValuesAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.BodyCellValuesAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_BodyCellValuesAss"/>
+                    <End EntitySet="BodyCellValuesSet" Role="ToRole_BodyCellValuesAss"/>
+                </AssociationSet>
+                <AssociationSet Name="ButtonsAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.BodyElementButtonsAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_BodyElementButtonsAss"/>
+                    <End EntitySet="BodyElementButtonsSet" Role="ToRole_BodyElementButtonsAss"/>
+                </AssociationSet>
+                <AssociationSet Name="ComptenciesAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.ComptenciesAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_ComptenciesAss"/>
+                    <End EntitySet="CompetenciesSet" Role="ToRole_ComptenciesAss"/>
+                </AssociationSet>
+                <AssociationSet Name="BodyElementButtonsAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.BodyElementButtonsAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_BodyElementButtonsAss"/>
+                    <End EntitySet="BodyElementButtonsSet" Role="ToRole_BodyElementButtonsAss"/>
+                </AssociationSet>
+                <AssociationSet Name="FeAlreadyChosenAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.FeAlreadyChosenAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_FeAlreadyChosenAss"/>
+                    <End EntitySet="FeAlreadyChosenSet" Role="ToRole_FeAlreadyChosenAss"/>
+                </AssociationSet>
+                <AssociationSet Name="HeaderTextAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.HeaderTextAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_HeaderTextAss"/>
+                    <End EntitySet="HeaderTextSet" Role="ToRole_HeaderTextAss"/>
+                </AssociationSet>
+                <AssociationSet Name="AttachmentAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.AttachmentAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="AttachOperationsSet" Role="FromRole_AttachmentAss"/>
+                    <End EntitySet="AttachmentSet" Role="ToRole_AttachmentAss"/>
+                </AssociationSet>
+                <AssociationSet Name="StatusNotesAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.StatusNotesAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_StatusNotesAss"/>
+                    <End EntitySet="StatusNotesSet" Role="ToRole_StatusNotesAss"/>
+                </AssociationSet>
+                <AssociationSet Name="FormParametersAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.FormParametersAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_FormParametersAss"/>
+                    <End EntitySet="FormParametersSet" Role="ToRole_FormParametersAss"/>
+                </AssociationSet>
+                <AssociationSet Name="ObjectivesAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.ObjectivesAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_ObjectivesAss"/>
+                    <End EntitySet="ObjectivesSet" Role="ToRole_ObjectivesAss"/>
+                </AssociationSet>
+                <AssociationSet Name="ReturnOpAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.ReturnOpAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_ReturnOpAss"/>
+                    <End EntitySet="ReturnOpSet" Role="ToRole_ReturnOpAss"/>
+                </AssociationSet>
+                <AssociationSet Name="BodyColumnsAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.BodyColumnsAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_BodyColumnsAss"/>
+                    <End EntitySet="BodyColumnsSet" Role="ToRole_BodyColumnsAss"/>
+                </AssociationSet>
+                <AssociationSet Name="DevPlanActivitiesAss_AssocSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.DevPlanActivitiesAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_DevPlanActivitiesAss"/>
+                    <End EntitySet="DevPlanActivitiesSet" Role="ToRole_DevPlanActivitiesAss"/>
+                </AssociationSet>
+                <AssociationSet Name="FormAnswersAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.FormAnswersAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_FormAnswersAss"/>
+                    <End EntitySet="FormAnswersSet" Role="ToRole_FormAnswersAss"/>
+                </AssociationSet>
+                <AssociationSet Name="DocProcessingAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.DocProcessingAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_DocProcessingAss"/>
+                    <End EntitySet="DocProcessingSet" Role="ToRole_DocProcessingAss"/>
+                </AssociationSet>
+                <AssociationSet Name="ReturnAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.ReturnAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_ReturnAss"/>
+                    <End EntitySet="ReturnSet" Role="ToRole_ReturnAss"/>
+                </AssociationSet>
+                <AssociationSet Name="DocTabAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.DocTabAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_DocTabAss"/>
+                    <End EntitySet="DocTabSet" Role="ToRole_DocTabAss"/>
+                </AssociationSet>
+                <AssociationSet Name="FeStrucAvailableAss_AssocSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.FeStrucAvailableAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_FeStrucAvailableAss"/>
+                    <End EntitySet="FeStrucAvailableSet" Role="ToRole_FeStrucAvailableAss"/>
+                </AssociationSet>
+                <AssociationSet Name="BodyCellRangesAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.BodyCellRangesAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_BodyCellRangesAss"/>
+                    <End EntitySet="BodyCellRangesSet" Role="ToRole_BodyCellRangesAss"/>
+                </AssociationSet>
+                <AssociationSet Name="FeBodyElementsAddAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.FeBodyElementsAddAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_FeBodyElementsAddAss"/>
+                    <End EntitySet="FeBodyElementsAddSet" Role="ToRole_FeBodyElementsAddAss"/>
+                </AssociationSet>
+                <AssociationSet Name="FeSelectableOtypeAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.FeSelectableOtypeAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_FeSelectableOtypeAss"/>
+                    <End EntitySet="FeSelectableOtypeSet" Role="ToRole_FeSelectableOtypeAss"/>
+                </AssociationSet>
+                <AssociationSet Name="FeFlatAvailableAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.FeFlatAvailableAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_FeFlatAvailableAss"/>
+                    <End EntitySet="FeFlatAvailableSet" Role="ToRole_FeFlatAvailableAss"/>
+                </AssociationSet>
+                <AssociationSet Name="HeaderAppraiserAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.HeaderAppraiserAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_HeaderAppraiserAss"/>
+                    <End EntitySet="HeaderAppraiserSet" Role="ToRole_HeaderAppraiserAss"/>
+                </AssociationSet>
+                <AssociationSet Name="BodyElementsAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.BodyElementsAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_BodyElementsAss"/>
+                    <End EntitySet="BodyElementsSet" Role="ToRole_BodyElementsAss"/>
+                </AssociationSet>
+                <AssociationSet Name="HeaderAppraiseeAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.HeaderAppraiseeAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_HeaderAppraiseeAss"/>
+                    <End EntitySet="HeaderAppraiseeSet" Role="ToRole_HeaderAppraiseeAss"/>
+                </AssociationSet>
+                <AssociationSet Name="ResultTableAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.ResultTableAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_ResultTableAss"/>
+                    <End EntitySet="ResultTableSet" Role="ToRole_ResultTableAss"/>
+                </AssociationSet>
+                <AssociationSet Name="HeaderDatesAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.HeaderDatesAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_HeaderDatesAss"/>
+                    <End EntitySet="HeaderDatesSet" Role="ToRole_HeaderDatesAss"/>
+                </AssociationSet>
+                <AssociationSet Name="HeaderStatusAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.HeaderStatusAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_HeaderStatusAss"/>
+                    <End EntitySet="HeaderStatusSet" Role="ToRole_HeaderStatusAss"/>
+                </AssociationSet>
+                <AssociationSet Name="FormQuestionsAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.FormQuestionsAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_FormQuestionsAss"/>
+                    <End EntitySet="FormQuestionsSet" Role="ToRole_FormQuestionsAss"/>
+                </AssociationSet>
+                <AssociationSet Name="HeaderDisplayAssSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.HeaderDisplayAss" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_HeaderDisplayAss"/>
+                    <End EntitySet="HeaderDisplaySet" Role="ToRole_HeaderDisplayAss"/>
+                </AssociationSet>
+                <AssociationSet Name="OperationToIntroSet" Association="ZHCM_UX_HAP_TKAO_SRV_01.OperationToIntro" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DocumentOperationsSet" Role="FromRole_OperationToIntro"/>
+                    <End EntitySet="IntroSet" Role="ToRole_OperationToIntro"/>
+                </AssociationSet>
                 <FunctionImport Name="GetDocumentList" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.DocumentList)" EntitySet="DocumentListSet" m:HttpMethod="GET">
-                    <Parameter Name="EndDate" Type="Edm.DateTime" Mode="In" Precision="7"/>
-                    <Parameter Name="StartDate" Type="Edm.DateTime" Mode="In" Precision="7"/>
-                    <Parameter Name="RoleId" Type="Edm.String" Mode="In" MaxLength="2"/>
+                    <Parameter Name="EndDate" Type="Edm.DateTime" Mode="In" Precision="0" sap:label="Bitiş"/>
+                    <Parameter Name="StartDate" Type="Edm.DateTime" Mode="In" Precision="0" sap:label="Başlangıç"/>
+                    <Parameter Name="RoleId" Type="Edm.String" Mode="In" MaxLength="2" sap:label="Rol"/>
+                    <Parameter Name="FormType" Type="Edm.String" Mode="In" MaxLength="30" Nullable="true" sap:label="Form Türü"/>
+                </FunctionImport>
+                <FunctionImport Name="GetAttachmentList" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.Attachment)" EntitySet="AttachmentSet" m:HttpMethod="GET">
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
                 <FunctionImport Name="GetBodyCellNotes" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.BodyCellNotes)" EntitySet="BodyCellNotesSet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
                 <FunctionImport Name="GetBodyCells" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.BodyCells)" EntitySet="BodyCellsSet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
                 <FunctionImport Name="GetBodyColumns" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.BodyColumns)" EntitySet="BodyColumnsSet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
                 <FunctionImport Name="GetBodyElementButtons" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.BodyElementButtons)" EntitySet="BodyElementButtonsSet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
                 <FunctionImport Name="GetBodyElements" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.BodyElements)" EntitySet="BodyElementsSet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
                 <FunctionImport Name="GetButtons" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.Buttons)" EntitySet="ButtonsSet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
-                <FunctionImport Name="GetDocProcessing" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.DocProcessing)" EntitySet="DocProcessingSet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                <FunctionImport Name="GetDocProcessing" ReturnType="ZHCM_UX_HAP_TKAO_SRV_01.DocProcessing" EntitySet="DocProcessingSet" m:HttpMethod="GET">
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
                 <FunctionImport Name="GetHeaderAddData" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.HeaderAddData)" EntitySet="HeaderAddDataSet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
                 <FunctionImport Name="GetHeaderAppraisee" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.HeaderAppraisee)" EntitySet="HeaderAppraiseeSet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
                 <FunctionImport Name="GetHeaderAppraiser" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.HeaderAppraiser)" EntitySet="HeaderAppraiserSet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
-                <FunctionImport Name="GetHeaderDisplay" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.HeaderDisplay)" EntitySet="HeaderDisplaySet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                <FunctionImport Name="GetHeaderDisplay" ReturnType="ZHCM_UX_HAP_TKAO_SRV_01.HeaderDisplay" EntitySet="HeaderDisplaySet" m:HttpMethod="GET">
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
-                <FunctionImport Name="GetHeaderDates" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.HeaderDates)" EntitySet="HeaderDatesSet" m:HttpMethod="GET"/>
+                <FunctionImport Name="GetHeaderDates" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.HeaderDates)" EntitySet="HeaderDatesSet" m:HttpMethod="GET">
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
+                </FunctionImport>
                 <FunctionImport Name="GetHeaderOthers" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.HeaderOthers)" EntitySet="HeaderOthersSet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
                 <FunctionImport Name="GetHeaderStatus" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.HeaderStatus)" EntitySet="HeaderStatusSet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
-                <FunctionImport Name="GetHeaderText" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.HeaderText)" EntitySet="HeaderTextSet" m:HttpMethod="GET">
-                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In"/>
+                <FunctionImport Name="GetHeaderText" ReturnType="ZHCM_UX_HAP_TKAO_SRV_01.HeaderText" EntitySet="HeaderTextSet" m:HttpMethod="GET">
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
                 </FunctionImport>
+                <FunctionImport Name="GetDocTab" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.DocTab)" EntitySet="DocTabSet" m:HttpMethod="GET">
+                    <Parameter Name="TemplateId" Type="Edm.String" Mode="In" sap:label="Değerlendirme Şablonu"/>
+                </FunctionImport>
+                <FunctionImport Name="GetBodyElementDescr" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.BodyElementDescr)" EntitySet="BodyElementDescrSet" m:HttpMethod="GET">
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
+                </FunctionImport>
+                <FunctionImport Name="GetBodyCellValues" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.BodyCellValues)" EntitySet="BodyCellValuesSet" m:HttpMethod="GET">
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
+                </FunctionImport>
+                <FunctionImport Name="GetBodyCellRanges" ReturnType="Collection(ZHCM_UX_HAP_TKAO_SRV_01.BodyCellRanges)" EntitySet="BodyCellRangesSet" m:HttpMethod="GET">
+                    <Parameter Name="AppraisalId" Type="Edm.Guid" Mode="In" sap:label="Değerlendirme formu"/>
+                </FunctionImport>
+                <FunctionImport Name="CheckUsage" ReturnType="ZHCM_UX_HAP_TKAO_SRV_01.DocumentList" EntitySet="DocumentListSet" m:HttpMethod="GET"/>
             </EntityContainer>
-            <atom:link
-                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZHCM_UX_HAP_TKAO_SRV_01/$metadata"/>
-                <atom:link
-                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZHCM_UX_HAP_TKAO_SRV_01/$metadata"/>
-                </Schema>
-            </edmx:DataServices>
-        </edmx:Edmx>
+            <atom:link rel="self" href="http://tks0154.thy.com:8000/sap/opu/odata/sap/ZHCM_UX_HAP_TKAO_SRV_01/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://tks0154.thy.com:8000/sap/opu/odata/sap/ZHCM_UX_HAP_TKAO_SRV_01/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

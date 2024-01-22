@@ -97,8 +97,8 @@
 
 .hapPage .sapUxAPObjectPageSectionHeader {
     visibility: hidden!important;
-    height: 0.2rem !important;
-    line-height: 0.2rem !important;
+    height: 0.5rem !important;
+    line-height: 0.5rem !important;
 }
 
 .hapPage .sapUxAPObjectPageContainerNoBar>.sapUxAPObjectPageSection:first-child:not(.sapUxAPObjectPageSectionNoTitle)

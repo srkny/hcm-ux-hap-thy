@@ -293,6 +293,11 @@ sap.ui.define(
       _showShepherdIntro: function () {
         this._oTour.start();
       },
+
+      _openHelpDocument: function (url){
+        sap.m.URLHelper.redirect(url, true);
+      },
+
       _addShepherdStep: function (
         sTitle,
         sText,
@@ -1395,7 +1400,7 @@ sap.ui.define(
                 return "Accept";
               }
 
-              if (sId === "START_DEV_PLAN" || sId === "SHOW_INTRO") {
+              if (sId === "START_DEV_PLAN" || sId === "SHOW_INTRO" || sId === "HELP_DOC") {
                 return "Accept";
               }
 
@@ -1426,9 +1431,10 @@ sap.ui.define(
                   return "sap-icon://sys-cancel-2";
                 case "PRINT":
                   return "sap-icon://print";
-
                 case "SHOW_INTRO":
                   return "sap-icon://hint";
+                case "HELP_DOC":
+                  return "sap-icon://sys-help-2";
               }
             },
           },
@@ -1470,6 +1476,12 @@ sap.ui.define(
           value: "{formDetailsModel>TargetSection}",
         });
         oActionButton.addCustomData(oTargetSection);
+
+        var oUrl = new sap.ui.core.CustomData({
+          key: "Url",
+          value: "{formDetailsModel>Url}",
+        });
+        oActionButton.addCustomData(oUrl);
 
         /*var oToolbar = new sap.m.Toolbar();
                       oToolbar.bindAggregation("content", {
@@ -4142,7 +4154,7 @@ sap.ui.define(
         sParamVal = oFormParameters["FORM_VB_ROW_INDIVIDUAL_GOALS"];
 
         if (oElem.EnhancementVisible) {
-          if (oElem.ElementId !== sParamVal) {
+       //   if (oElem.ElementId !== sParamVal) {
             var oAddButton = new sap.m.Button({
               icon: "sap-icon://add",
               type: "Accept",
@@ -4151,6 +4163,7 @@ sap.ui.define(
               layoutData: new sap.m.OverflowToolbarLayoutData({
                 moveToOverflow: false,
               }),
+              busyIndicatorDelay:0
             });
             oAddButton.addCustomData(oRowIid);
             oAddButton.addCustomData(oElementName);
@@ -4168,7 +4181,7 @@ sap.ui.define(
 
             oPanelToolbar.addContent(oAddButton);
             this._addUIElement(oElem, "RowAddButton", null, oAddButton);
-          } else {
+          /* } else {
             var oObjectButton = new sap.m.Button({
               text: "{i18n>labelAddElement}",
               icon: "sap-icon://add",
@@ -4190,7 +4203,7 @@ sap.ui.define(
 
             oPanelToolbar.addContent(oObjectButton);
             this._addUIElement(oElem, "RowMenuButton", null, oObjectButton);
-          }
+          } */
         }
 
         sParamVal = oFormParameters["FORM_VB_DP_TRAINING"];
@@ -4833,7 +4846,10 @@ sap.ui.define(
           });
 
           var oFI = new sap.m.Input({
-            placeholder: '"' + sPlaceHolder + '" giriniz...',
+            placeholder: 
+            this.getResourceBundle().getText("phAddNewElement", [
+              sPlaceHolder,
+            ]),
             value:
               "{formDetailsModel>/bodyElements/" +
               sAppraisalId +
@@ -6648,7 +6664,7 @@ sap.ui.define(
         }
       },
       _handleActionButtonPressed: function (oEvent) {
-        var oButton = oEvent.getSource();
+        var oButton = oEvent.getSource();        
         var sAppraisalId = oButton.data("AppraisalId");
         switch (oButton.data("ButtonId")) {
           case "SAVE":
@@ -6669,6 +6685,9 @@ sap.ui.define(
           case "SHOW_INTRO":
             // this._showDriverIntro();
             this._showShepherdIntro();
+            break;
+          case "HELP_DOC":
+            this._openHelpDocument(oButton.data("Url"))
             break;
           default:
             this._handleButtonAction(sAppraisalId, oButton);
@@ -7265,6 +7284,10 @@ sap.ui.define(
           return;
         }
 
+        const oButton = oEvent.getSource()
+        
+        oButton.setBusy(true);
+
         this._convertUIData(sAppraisalId);
 
         var oOperation = {
@@ -7324,6 +7347,7 @@ sap.ui.define(
           success: function (oData, oResponse) {
             /* Close busy indicator*/
             oThis._closeBusyFragment();
+            oButton.setBusy(false);
 
             /* Return messages */
             if (oData.Return !== null) {
@@ -7353,6 +7377,7 @@ sap.ui.define(
             }
           },
           error: function (oError) {
+            oButton.setBusy(true);
             oThis._closeBusyFragment();
             jQuery.sap.log.error(oError);
           },
@@ -8212,6 +8237,9 @@ sap.ui.define(
       },
       _handleChangeStatus: function (sAppraisalId, sButtonId) {
         var oThis = this;
+        var oViewModel = this.getModel("formDetailsModel");
+
+        oViewModel.setProperty("/statusChangeNote", "");
 
         var _doChangeStatus = function () {
           oThis.confirmDialog.close();
@@ -8583,7 +8611,7 @@ sap.ui.define(
         oNewElement.Value = oViewModel.getProperty(sTargetPath);
 
         if (oNewElement.Value === "" || oNewElement.Value === null) {
-          MessageBox.error("Tanım alanını doldurunuz");
+          MessageBox.error(oNewElement.PlaceHolder);
           return;
         }
 
