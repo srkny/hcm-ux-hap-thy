@@ -290,7 +290,35 @@ sap.ui.define(
         oThis.confirmDialog.open();
       },
 
-      _showShepherdIntro: function () {
+      _showShepherdIntro: function (oEvent) {
+        
+        if(oEvent){
+          try{
+            const aSteps = this._oTour.steps;
+            const oParent= oEvent?.getSource().getParent();
+            
+            let oFooterStep = _.find(aSteps, (oStep)=>{
+              if(oStep.options.isFooter){
+                return true;
+              }
+              if(oStep.options.attachTo.element.includes(".hapPageFooterButtons") || oStep.options?.isFooter){
+
+                return true;
+              }
+            });
+
+            if(oFooterStep){
+              oFooterStep.options.isFooter = true;
+              oFooterStep.options.attachTo.element = "#" + oParent.getDomRef().id;
+            }
+
+          
+          }catch(e){
+            //--Error with event
+          }
+          
+        }
+
         this._oTour.start();
       },
 
@@ -1566,6 +1594,11 @@ sap.ui.define(
         var aTabs = _.filter(oFormData.DocTab, ["Tab", "X"]);
         var aNavigationData = [];
         var oThis = this;
+        var oDeviceModel = this.getModel("device");
+
+        if(oDeviceModel.getProperty("/system/phone")){
+            this.getRouter().navTo("notSupported",null, true);
+        }
 
         $.each(aTabs, function (sIndex, oTab) {
           if (
@@ -6684,7 +6717,7 @@ sap.ui.define(
             break;
           case "SHOW_INTRO":
             // this._showDriverIntro();
-            this._showShepherdIntro();
+            this._showShepherdIntro(oEvent);
             break;
           case "HELP_DOC":
             this._openHelpDocument(oButton.data("Url"))

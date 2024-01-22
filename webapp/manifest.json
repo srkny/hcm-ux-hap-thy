@@ -146,6 +146,11 @@
                     "target": [
                         "formdetail"
                     ]
+                },
+                {
+                  "pattern": "NotSupported",
+                  "name": "notSupported",
+                  "target": ["notSupported"]
                 }
             ],
             "targets": {
@@ -168,6 +173,10 @@
                 "notFound": {
                     "viewName": "NotFound",
                     "viewId": "notFound"
+                },
+                "notSupported": {
+                  "viewName": "NotSupported",
+                  "viewId": "notSupported"
                 }
             }
         }
